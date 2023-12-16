@@ -36,7 +36,7 @@ const Toppings = styled.div`
     width: 100%;
 `;
 
-export const OrderListItem = ({ order }) => {
+export const OrderListItem = ({ order, index, deletItem }) => {
     const topping = order.toppings.filter(item => item.checked).map(item => item.name).join(', ');
 
     return (
@@ -44,7 +44,7 @@ export const OrderListItem = ({ order }) => {
             <ItemName>{order.name} {order.choice}</ItemName>
             <span>{order.count}</span>
             <ItemPrice>{formatCurrency(totalPriceItems(order))}</ItemPrice>
-            <TrashButton />
+            <TrashButton onClick={() => deletItem(index)} />
             {topping && <Toppings>Допы: {topping}</Toppings>}
         </OrderItemStyled>
     )
